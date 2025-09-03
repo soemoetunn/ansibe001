@@ -1,0 +1,29 @@
+---
+
+- hosts: dns_servers
+  become: true
+  tasks:
+
+    - name: install updates (Red Hat)
+      dnf:
+        update_only: yes
+
+    - name: install httpd package
+      dnf:
+        name:
+          - httpd
+          - php
+          - vim
+        state: latest
+        update_cache: yes
+      when: ansible_distribution == "RedHat"
+
+    - name: copy default html file for site
+      tags: apache,apache2,httpd
+      copy:
+        src: default_site.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
+
