@@ -4,6 +4,10 @@
   become: true
   tasks:
 
+    - name: install updates (Red Hat)
+      dnf:
+        update_only: yes
+
     - name: install httpd package
       dnf:
         name:

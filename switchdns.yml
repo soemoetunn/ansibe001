@@ -4,33 +4,6 @@
   become: true
   tasks:
 
-    - name: Backup old zone file cbm-net.cbm.gov.mm.zone
-      copy:
-        src: /var/named/cbm-net.cbm.gov.mm.zone
-        dest: /var/named/cbm-net.cbm.gov.mm.zone.bak
-        remote_src: yes
-        owner: named
-        group: named
-        mode: '0644'
-
-    - name: Backup old reverse zone file 5.102.10.rev
-      copy:
-        src: /var/named/5.102.10.rev
-        dest: /var/named/5.102.10.rev.bak
-        remote_src: yes
-        owner: named
-        group: named
-        mode: '0644'
-
-    - name: Rename cbm-net.cbm.gov.mm.zone to drcbm-net.cbm.gov.mm.zone
-      command: mv /var/named/cbm-net.cbm.gov.mm.zone /var/named/drcbm-net.cbm.gov.mm.zone
-      args:
-        creates: /var/named/drcbm-net.cbm.gov.mm.zone
-
-    - name: Rename 5.102.10.rev to 5.102.20.rev
-      command: mv /var/named/5.102.10.rev /var/named/5.102.20.rev
-      args:
-        creates: /var/named/5.102.20.rev
 
     - name: Update named.conf zone file reference
       replace:
@@ -41,8 +14,8 @@
     - name: Update named.conf reverse zone file reference
       replace:
         path: /etc/named.conf
-        regexp: '5.102.10.rev'
-        replace: '5.102.20.rev'
+        regexp: '200.254.10.rev'
+        replace: '201.254.10.rev'
 
     - name: Restart named service
       service:
