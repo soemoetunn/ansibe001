@@ -1,8 +1,11 @@
 [dns_servers]
 10.254.111.53
 
-[dns_servers1]
+[dns2]
 10.254.111.54
+
+[workstation]
+10.254.111.100
 
 [gitlab_servers]
 10.254.111.102
