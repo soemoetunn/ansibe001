@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+   
+  - name: Create User ansiblesoe
+    tags: always
+    user: 
+     name: ansiblesoe
+     groups: root
